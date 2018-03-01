@@ -66,18 +66,12 @@ export default {
   mounted() {
 		var viewer = new Viewer(document.getElementById('main'), {});
 
-		// var dataSrc = [
-		// 	{src: 'https://b-ssl.duitang.com/uploads/item/201507/25/20150725091248_RVyBv.jpeg'},
-		// 	{src: 'https://b-ssl.duitang.com/uploads/item/201511/25/20151125044659_jiMyJ.jpeg'},
-		// 	{src: 'https://b-ssl.duitang.com/uploads/item/201601/21/20160121171957_XUtWr.jpeg'},
-		// 	{src: 'https://b-ssl.duitang.com/uploads/item/201601/21/20160121170315_imuTN.jpeg'}
-		// ];
-
 		var dataSrc = [
-			{src: 'http://xfjr.ledaikuan.cn/kahuanwang/imgs/1.jpeg'},
-			{src: 'http://xfjr.ledaikuan.cn/kahuanwang/imgs/2.jpeg'}
-		];
-
+			{src: 'https://b-ssl.duitang.com/uploads/item/201507/25/20150725091248_RVyBv.jpeg'},
+			{src: 'https://b-ssl.duitang.com/uploads/item/201511/25/20151125044659_jiMyJ.jpeg'},
+			{src: 'https://b-ssl.duitang.com/uploads/item/201601/21/20160121171957_XUtWr.jpeg'},
+			{src: 'https://b-ssl.duitang.com/uploads/item/201601/21/20160121170315_imuTN.jpeg'}
+    ];
     var oParent = document.getElementById('main');
     var oBoxs = getElesByClass(oParent, 'box');
 
@@ -188,19 +182,19 @@ export default {
 
 <style>
 #main {
-	position: relative;
+		position: relative;
 }
 #main .box {
-	float: left;
-	padding: 15px 0 0 15px;
+		float: left;
+		padding: 15px 0 0 15px;
 }
 #main .box .pic {
-	padding: 10px;
-	border: 1px solid #ccc;
-	box-shadow: 0 0 5px #ccc;
+		padding: 10px;
+		border: 1px solid #ccc;
+		box-shadow: 0 0 5px #ccc;
 }
 #main .box .pic img {
-	width: 165px;
-	height: auto;
+		width: 165px;
+		height: auto;
 }
 </style>

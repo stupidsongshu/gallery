@@ -5,8 +5,9 @@
         <div class="socialCircle-item">
           <router-link :to="{name: 'gallery'}">gallery<i class="fa fa-behance"></i></router-link>
         </div>
-        <div class="socialCircle-item"><i class="fa fa-github"></i></div>
-        <div class="socialCircle-item"><i class="fa fa-linkedin"></i></div>
+        <div class="socialCircle-item">
+          <router-link :to="{name: 'waterfall'}">waterfall</router-link><i class="fa fa-github"></i>
+        </div>
         <div class="socialCircle-item"><i class="fa fa-facebook"></i></div>
         <div class="socialCircle-item"><i class="fa fa-twitter"></i></div>
         <div class="socialCircle-item"><i class="fa fa-reddit"></i></div>
@@ -69,8 +70,9 @@ export default {
         margin: 50%;
         text-align: center;
         color: #ffffff;
-        font-size: 30px;
+        font-size: 14px;
         cursor: pointer;
+        transform: rotate(90deg);
       }
       .socialCircle-center {
         width: 60px;
