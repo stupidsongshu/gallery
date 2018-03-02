@@ -64,123 +64,116 @@ import 'viewerjs/dist/viewer.css'
 
 export default {
   mounted() {
-		var viewer = new Viewer(document.getElementById('main'), {});
+	var viewer = new Viewer(document.getElementById('main'), {});
 
-		// var dataSrc = [
-		// 	{src: 'https://b-ssl.duitang.com/uploads/item/201507/25/20150725091248_RVyBv.jpeg'},
-		// 	{src: 'https://b-ssl.duitang.com/uploads/item/201511/25/20151125044659_jiMyJ.jpeg'},
-		// 	{src: 'https://b-ssl.duitang.com/uploads/item/201601/21/20160121171957_XUtWr.jpeg'},
-		// 	{src: 'https://b-ssl.duitang.com/uploads/item/201601/21/20160121170315_imuTN.jpeg'}
-		// ];
-
-		var dataSrc = [
-			{src: 'http://xfjr.ledaikuan.cn/kahuanwang/imgs/1.jpeg'},
-			{src: 'http://xfjr.ledaikuan.cn/kahuanwang/imgs/2.jpeg'}
-		];
+	var dataSrc = [
+		{src: 'http://xfjr.ledaikuan.cn/kahuanwang/imgs/1.jpeg'},
+		{src: 'http://xfjr.ledaikuan.cn/kahuanwang/imgs/2.jpeg'}
+	];
 
     var oParent = document.getElementById('main');
     var oBoxs = getElesByClass(oParent, 'box');
 
     window.onload = function() {
-			// 一定要在onload方法里面调用否则会有bug
-			waterfall('main', 'box');
-			loadMore();
+		// 一定要在onload方法里面调用否则会有bug
+		waterfall('main', 'box');
+		loadMore();
 
-			window.onscroll = function () {
-				loadMore();
-			}
+		window.onscroll = function () {
+			loadMore();
+		}
     }
 
     function loadMore () {
-			if (checkScroll()) {
-				console.log('loading...');
-				for (var i = 0; i < dataSrc.length; i++) {
-					var oBox = document.createElement('div');
-					oBox.className = 'box';
-					oParent.appendChild(oBox);
+		if (checkScroll()) {
+			console.log('loading...');
+			for (var i = 0; i < dataSrc.length; i++) {
+				var oBox = document.createElement('div');
+				oBox.className = 'box';
+				oParent.appendChild(oBox);
 
-					var oPic = document.createElement('div');
-					oPic.className = 'pic';
-					oBox.appendChild(oPic);
+				var oPic = document.createElement('div');
+				oPic.className = 'pic';
+				oBox.appendChild(oPic);
 
-					var img = document.createElement('img');
-					img.src = dataSrc[i].src;
-					oPic.appendChild(img);
-				}
-
-				waterfall('main', 'box');
-
-				viewer.update();
+				var img = document.createElement('img');
+				img.src = dataSrc[i].src;
+				oPic.appendChild(img);
 			}
+
+			waterfall('main', 'box');
+
+			viewer.update();
+		}
     }
     function waterfall(parent, box) {
-			// 取出#main所有的.box元素
-			var oParent = document.getElementById(parent);
-			var oBoxs = getElesByClass(oParent, box);
+		// 取出#main所有的.box元素
+		var oParent = document.getElementById(parent);
+		var oBoxs = getElesByClass(oParent, box);
 
-			// 计算整个页面显示的列数(页面宽/box宽)
-			// oBoxW 202 = 165 + 10*2 + 1*2 + 15
-			var oBoxW = oBoxs[0].offsetWidth;
-			var cols = Math.floor(document.documentElement.clientWidth / oBoxW);
-			// 设置main宽度
-			oParent.style.cssText = 'width:' + oBoxW * cols + 'px;margin: 0 auto;';
+		// 计算整个页面显示的列数(页面宽/box宽)
+		// oBoxW 202 = 165 + 10*2 + 1*2 + 15
+		var oBoxW = oBoxs[0].offsetWidth;
+		var cols = Math.floor(document.documentElement.clientWidth / oBoxW);
+		// 设置main宽度
+		oParent.style.cssText = 'width:' + oBoxW * cols + 'px;margin: 0 auto;';
 
-			var hArr = []; // 存放每一行元素的高度
-			for (var i = 0; i < oBoxs.length; i++) {
-				if (i < cols) { // 第一行
-					// hArr[i] = oBoxs[i].offsetHeight;
-					hArr.push(oBoxs[i].offsetHeight);
-				} else { // 大于第cols行的元素
-					// 高度最小值
-					var minH = Math.min.apply(null, hArr);
-					console.log(minH);
-					// 高度最小值在数组中的索引
-					var index = getMinHIndex(hArr, minH);
+		var hArr = []; // 存放每一行元素的高度
+		for (var i = 0; i < oBoxs.length; i++) {
+			if (i < cols) { // 第一行
+				// hArr[i] = oBoxs[i].offsetHeight;
+				hArr.push(oBoxs[i].offsetHeight);
+			} else { // 大于第cols行的元素
+				// 高度最小值
+				var minH = Math.min.apply(null, hArr);
+				console.log(minH);
+				// 高度最小值在数组中的索引
+				var index = getMinHIndex(hArr, minH);
 
-					oBoxs[i].style.position = 'absolute';
-					// oBoxs[i].style.top = oBoxs[index].offsetHeight + 'px';
-					oBoxs[i].style.top = minH + 'px';
-					// oBoxs[i].style.left = oBoxW * index + 'px';
-					oBoxs[i].style.left = oBoxs[index].offsetLeft + 'px';
+				oBoxs[i].style.position = 'absolute';
+				// oBoxs[i].style.top = oBoxs[index].offsetHeight + 'px';
+				oBoxs[i].style.top = minH + 'px';
+				// oBoxs[i].style.left = oBoxW * index + 'px';
+				oBoxs[i].style.left = oBoxs[index].offsetLeft + 'px';
 
-					hArr[index] += oBoxs[i].offsetHeight;
-				}
+				hArr[index] += oBoxs[i].offsetHeight;
 			}
-			console.log(hArr);
+		}
+		console.log(hArr);
     }
 
     // 根据 class 取元素
     function getElesByClass(parent, clsName) {
-			var arr = [],
-				aElements = parent.getElementsByTagName('*');
-			for (var i = 0; i < aElements.length; i++) {
-				if (aElements[i].className === clsName) {
-						arr.push(aElements[i]);
-				}
+		var arr = [],
+			aElements = parent.getElementsByTagName('*');
+		for (var i = 0; i < aElements.length; i++) {
+			if (aElements[i].className === clsName) {
+					arr.push(aElements[i]);
 			}
-			return arr;
+		}
+		return arr;
     }
 
     // 获取数组中某个值的索引
     function getMinHIndex(arr, val) {
-			for (var i in arr) {
-				if (arr[i] === val) {
-					return i;
-				}
+		for (var i in arr) {
+			if (arr[i] === val) {
+				return i;
 			}
+		}
     }
 
     // 根据最后一个数据块判断是否满足加载条件
     function checkScroll() {
-			var oParent = document.getElementById('main');
-			var oBoxs = getElesByClass(oParent, 'box');
-			var lastBox = oBoxs[oBoxs.length - 1];
-			var lastBoxH = lastBox.offsetTop + Math.floor(lastBox.offsetHeight / 2);
+		var oParent = document.getElementById('main');
+		var oBoxs = getElesByClass(oParent, 'box');
+		var lastBox = oBoxs[oBoxs.length - 1];
+		var lastBoxH = lastBox.offsetTop + Math.floor(lastBox.offsetHeight / 2);
 
-			var clientH = document.documentElement.clientHeight || document.body.clientHeight;
-			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		var clientH = document.documentElement.clientHeight || document.body.clientHeight;
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-			return (lastBoxH < clientH + scrollTop) ? true : false;
+		return (lastBoxH < clientH + scrollTop) ? true : false;
     }
 	}
 }

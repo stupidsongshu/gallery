@@ -5,7 +5,8 @@ import Home from '@/pages/index/views/home'
 import Gallery from '@/pages/index/views/gallery'
 import Contact from '@/pages/index/views/contact'
 import About from '@/pages/index/views/about'
-import Waterfall from '@/pages/index/views/waterfall'
+
+import '@/assets/css/common.css'
 
 Vue.use(Router)
 
@@ -39,14 +40,6 @@ export default new Router({
       path: '/contact',
       name: 'contact',
       component: Contact,
-      meta: {
-        keepAlive: false
-      }
-    },
-    {
-      path: '/waterfall',
-      name: 'waterfall',
-      component: Waterfall,
       meta: {
         keepAlive: false
       }
