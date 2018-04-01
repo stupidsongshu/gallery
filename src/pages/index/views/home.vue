@@ -36,13 +36,13 @@
 
       <!-- 如果需要分页器 -->
       <div class="swiper-pagination"></div>
-      
+
       <!-- 如果需要导航按钮 -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-      
+      <!-- <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div> -->
+  
       <!-- 如果需要滚动条 -->
-      <div class="swiper-scrollbar"></div>
+      <!-- <div class="swiper-scrollbar"></div> -->
     </div>
   </div>
 </template>
@@ -84,6 +84,7 @@ export default {
   methods: {
     swiperInit() {
       let swiper = new Swiper('.home-fullpage', {
+        direction: 'vertical',
         autoplay: true,
         loop: true,
   
@@ -94,15 +95,15 @@ export default {
         },
 
         // 如果需要前进后退按钮
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
+        // navigation: {
+        //   nextEl: '.swiper-button-next',
+        //   prevEl: '.swiper-button-prev',
+        // },
 
         // 如果需要滚动条
-        scrollbar: {
-          el: '.swiper-scrollbar',
-        },
+        // scrollbar: {
+        //   el: '.swiper-scrollbar',
+        // },
       })
     }
   }
